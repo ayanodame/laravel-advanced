@@ -11,10 +11,10 @@ class BookController extends Controller
         $items = Book::all();
         return view('book.index', ['items'=>$items]);
     }
-    public function add(Request $request){
+    public function addview(Request $request){
         return view('book.add');
     }
-    public function create(Request $request){
+    public function add(Request $request){
         $this->validate($request, Book::$rules);
         $form = $request->all();
         Book::create($form);

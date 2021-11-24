@@ -17,6 +17,6 @@ use App\Http\Controllers\AuthorController;
 
 Route::prefix('book')->group(function (){
     Route::get('/',[BookController::class,'index']);
-    Route::get('/add',[BookController::class,'add']);
-    Route::post('/add',[BookController::class,'create']);
+    Route::get('/add',[BookController::class,'addview']);
+    Route::post('/add',[BookController::class,'add']);
 });
