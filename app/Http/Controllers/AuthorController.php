@@ -5,19 +5,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Author;
+use Illuminate\Support\Facades\Auth;
+
 
 class AuthorController extends Controller
 {
-    public function indexview(){
-        $items=Author::all();
-        return view('index',['items'=>$items]);
+    public function authview(Request $request){
+        $text=['text'=>'ログイン前'];
+        return view('auth',$text);
     }
-    public function deleteview(Request $request){
-        $Author=Author::find($request->id);
-        return view('delete',['form'=>$Author]);
-    }
-    public function delete(Request $request){
-        Author::find($request->id)->delete();
-        return redirect('/');
+    public function login(Request $request){
+        $email=$request->email;
+        $password=$request->password;
+        if(Auth::attempt(['email'=>$email,'password'=>$password])){
+            $text=Auth::user()->name.'さん、こんにちは';
+        } else {
+            $text='メールアドレスまたはパスワードが間違っています';
+        }
+        return view('auth',['text'=>$text]);
     }
 }

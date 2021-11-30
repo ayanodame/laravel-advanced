@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BookController;
-use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\PersonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +14,6 @@ use App\Http\Controllers\AuthorController;
 |
 */
 
-Route::prefix('book')->group(function (){
-    Route::get('/',[BookController::class,'index']);
-    Route::get('/add',[BookController::class,'addview']);
-    Route::post('/add',[BookController::class,'add']);
-});
+Route::get('/form',[PersonController::class,'indexview']);
+Route::post('/form',[PersonController::class,'add']);
+Route::post('/thanks',[PersonController::class,'thanksview']);
